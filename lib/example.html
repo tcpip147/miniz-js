@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miniz-Js Example</title>
+    <script src="miniz.js"></script>
+  </head>
+  <body>
+    <script>
+      const files = [];
+      for (let i = 0; i < 10; i++) {
+        files.push({
+          name: `file${i}.txt`,
+          data: `Hello World${i}`,
+        });
+      }
+      const miniz = new Miniz();
+      miniz.zip(files).then((compressed) => {
+        download('example.zip', compressed);
+        miniz.unzip(compressed).then((files) => {
+          console.log(files);
+        });
+      });
+
+      function download(filename, blob) {
+        const URL = window.URL || window.webkitURL;
+        const a = document.createElement('a');
+        a.download = filename;
+        a.rel = 'noopener';
+        a.href = URL.createObjectURL(blob);
+        setTimeout(() => {
+          const e = document.createEvent('MouseEvents');
+          e.initMouseEvent('click', true, true, window, 0, 0, 0, 80, 20, false, false, false, false, 0, null);
+          a.dispatchEvent(e);
+        });
+      }
+    </script>
+  </body>
+</html>

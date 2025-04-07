@@ -1,0 +1,20 @@
+{
+  "name": "miniz-js",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "compile": "compile.bat",
+    "test": "clang src/c/script.c src/c/miniz.c -o out/miniz.exe && cd out && miniz.exe"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.18.8",
+    "copy-webpack-plugin": "^13.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  }
+}
